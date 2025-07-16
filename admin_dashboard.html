@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Playfair+Display&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <h2 style="margin: 0; color: gold;">EventLux Admin</h2>
+        </div>
+        <div>
+            <form action="/logout" method="get" class="inline-form">
+                <button type="submit" class="btn btn-secondary">Logout</button>
+            </form>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="card" style="text-align: center;">
+            <h1>Welcome to the Admin Dashboard</h1>
+            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 2rem;">
+                <a href="/admin/events">
+                    <button class="btn btn-primary">Manage Events</button>
+                </a>
+                <a href="{{ url_for('add_event') }}">
+                    <button class="btn btn-primary">Add New Event</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2025 EventLux. All rights reserved.
+    </footer>
+
+</body>
+</html>

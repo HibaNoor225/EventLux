@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Manage Events</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+   <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Playfair+Display&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="table-container">
+        <div class="table-card">
+            <h1>Manage Events</h1>
+
+            <div style="margin-bottom: 1rem;">
+                <a href="{{ url_for('add_event') }}">
+                    <button class="btn btn-primary">Add New Event</button>
+                </a>
+            </div>
+
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Location</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for event in events %}
+                        <tr>
+                            <td>{{ event.title }}</td>
+                            <td>{{ event.date.strftime('%Y-%m-%d') }}</td>
+                            <td>{{ event.time }}</td>
+                            <td>{{ event.location }}</td>
+                            <td>
+                                <a href="{{ url_for('edit_event', event_id=event.id) }}">
+                                    <button class="btn btn-secondary">Edit</button>
+                                </a>
+
+                                <form action="{{ url_for('delete_event', event_id=event.id) }}" method="post" style="display:inline;">
+                                    <button class="btn btn-danger" type="submit" onclick="return confirm('Delete this event?')">Delete</button>
+                                </form>
+
+                                <a href="{{ url_for('view_event_registrations', event_id=event.id) }}">
+                                    <button class="btn btn-info">View Registrations</button>
+                                </a>
+
+                                <a href="{{ url_for('view_event_feedbacks', event_id=event.id) }}">
+                                    <button class="btn btn-success">View Feedback</button>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div style="margin-top: 2rem;">
+                <a href="{{ url_for('admin_dashboard') }}">
+                    <button class="btn">Back to Dashboard</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 EventLux. All rights reserved.
+    </footer>
+
+</body>
+</html>

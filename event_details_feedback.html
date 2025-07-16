@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ event.title }} - Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Cinzel:wght@400;700&family=Lato&display=swap" rel="stylesheet">
+    <style>
+        .event-details-container {
+            max-width: 1100px;
+            margin: 3rem auto;
+            padding: 2rem;
+        }
+
+        .event-title {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            color: gold;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .event-images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .event-images img {
+            max-height: 250px;
+            border-radius: 12px;
+            filter: brightness(1.15) drop-shadow(0 0 12px rgba(255, 215, 0, 0.5));
+            transition: transform 0.3s ease;
+        }
+
+        .event-images img:hover {
+            transform: scale(1.07);
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        /* Adjust table colors to match dark theme */
+        .styled-table th,
+        .styled-table td {
+            color: #fdfdfd;
+        }
+
+        .styled-table th {
+            background-color: rgba(255, 215, 0, 0.2);
+            color: gold;
+        }
+
+        .message {
+            font-weight: bold;
+            color: red;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <h2 style="margin: 0; font-family: 'Cinzel', serif; color: gold;">Event Details</h2>
+    <form action="{{ url_for('my_events') }}" method="get">
+        <button type="submit" class="btn">Back to My Events</button>
+    </form>
+</nav>
+
+<!-- Main Container -->
+<div class="event-details-container card">
+    <h2 class="event-title">{{ event.title }}</h2>
+
+    <table class="styled-table">
+        <tbody>
+            <tr><th>Description</th><td>{{ event.description }}</td></tr>
+            <tr><th>Category</th><td>{{ event.category }}</td></tr>
+            <tr><th>Date</th><td>{{ event.date.strftime('%Y-%m-%d') }}</td></tr>
+            <tr><th>Time</th><td>{{ event.time }}</td></tr>
+            <tr><th>Location</th><td>{{ event.location }}</td></tr>
+            <tr><th>Spots Left</th><td>{{ event.spots }}</td></tr>
+            <tr><th>Registration Deadline</th><td>{{ event.registration_deadline.strftime('%Y-%m-%d') }}</td></tr>
+        </tbody>
+    </table>
+
+    {% if event.images %}
+        <h3 class="event-title" style="margin-top: 2rem;">Event Images</h3>
+        <div class="event-images">
+            {% for image in event.images %}
+                <img src="{{ url_for('static', filename='uploads/' ~ image) }}" alt="Event Image">
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="center" style="margin-top: 2.5rem;">
+        {% if can_give_feedback %}
+            <a href="{{ url_for('feedback', event_id=event.id) }}" class="btn btn-primary">Give Feedback</a>
+        {% elif message %}
+            <p class="message">{{ message }}</p>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Footer -->
+{% include 'event_footer.html' %}
+</body>
+</html>

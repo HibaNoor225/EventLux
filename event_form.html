@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ action }} Event</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Playfair+Display&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar">
+    <h2 style="margin: 0; color: gold;">{{ action }} Event</h2>
+    <a href="{{ url_for('manage_events') }}" class="btn">Back to Events</a>
+</nav>
+
+<div class="container">
+    <div class="card">
+
+        <!-- Edit Form -->
+        <form method="post" enctype="multipart/form-data">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" value="{{ event.title if event else '' }}" required>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description">{{ event.description if event else '' }}</textarea>
+
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" value="{{ event.date.strftime('%Y-%m-%d') if event else '' }}" required>
+
+            <label for="time">Time:</label>
+            <input type="time" id="time" name="time" value="{{ event.time if event else '' }}" required>
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" value="{{ event.location if event else '' }}">
+
+            <label for="capacity">Capacity:</label>
+            <input type="number" id="capacity" name="capacity" value="{{ event.capacity if event else '' }}" required>
+
+            <label for="registration_deadline">Registration Deadline:</label>
+            <input type="date" id="registration_deadline" name="registration_deadline"
+                   value="{{ event.registration_deadline.strftime('%Y-%m-%d') if event else '' }}" required>
+
+            <!-- Category Dropdown -->
+          <!-- Category Dropdown -->
+<label for="category">Category:</label>
+<select id="category" name="category" required style="color: #222;">
+    <option value="" style="color: #ffffff;">Select category</option>
+
+    {% for cat in ['Workshop', 'Seminar', 'Conference', 'Hackathon','Sports','Competitions', 'Other'] %}
+        <option value="{{ cat }}" {% if event and event.category == cat %}selected{% endif %}>{{ cat }}</option>
+    {% endfor %}
+</select>
+
+
+            <!-- Image Upload -->
+            <label for="images">Upload Images:</label>
+            <input type="file" id="images" name="images" multiple accept="image/*">
+
+            <button type="submit" name="form_action" value="save" class="btn">{{ action }}</button>
+        </form>
+
+        <!-- Existing Images (Outside the edit form) -->
+        {% if event and event.images %}
+            <label style="margin-top: 30px;">Existing Images:</label>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+                {% for img in event.images %}
+                    <div style="text-align:center;">
+                        <img src="{{ url_for('static', filename='uploads/' ~ img) }}"
+                             style="width:100px; height:100px; object-fit:cover;"><br>
+                        <form method="post"
+                              action="{{ url_for('delete_event_image', event_id=event.id, image_name=img) }}"
+                              style="margin-top:5px;">
+                            <button type="submit" class="btn" style="font-size:small;">Delete</button>
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 EventLux. All rights reserved.
+</footer>
+
+</body>
+</html>

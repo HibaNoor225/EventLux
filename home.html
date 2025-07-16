@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EventLux</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Playfair+Display&display=swap" rel="stylesheet">
+
+    <script>
+        setTimeout(function () {
+            window.location.href = "{{ url_for('login') }}";
+        }, 3000);  // Redirect after 4 seconds
+    </script>
+</head>
+<body>
+
+    <div class="blended-logo">
+        <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="EventLux Logo">
+    </div>
+
+</body>
+</html>

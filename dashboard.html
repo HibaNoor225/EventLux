@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Playfair+Display&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar">
+    <h2 style="margin: 0; color: gold;">Dashboard</h2>
+    <form action="/logout" method="get">
+        <button type="submit" class="btn">Logout</button>
+    </form>
+</nav>
+
+<div class="container">
+    <div class="card" style="text-align: center;">
+        <h2>Hi, {{ name }}!</h2>
+
+        <form action="/all_events" method="get" style="margin-bottom: 1rem;">
+            <button type="submit" class="btn">View All Events</button>
+        </form>
+
+        <form action="/my_events" method="get">
+            <button type="submit" class="btn">View My Events</button>
+        </form>
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 EventLux. All rights reserved.
+</footer>
+
+</body>
+</html>

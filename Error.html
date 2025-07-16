@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Playfair+Display&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar">
+    <h2 style="margin: 0; color: gold;">Oops! Something went wrong</h2>
+</nav>
+
+<div class="container">
+    <div class="card" style="text-align: center;">
+        <h2>Error</h2>
+        <p style="color: #ff6b6b; font-size: 1.2rem;">{{ error }}</p>
+        <form action="/" method="get" style="margin-top: 2rem;">
+            <button type="submit" class="btn">Back to Home</button>
+        </form>
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 EventLux. All rights reserved.
+</footer>
+
+</body>
+</html>

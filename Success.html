@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Status</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Playfair+Display&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar">
+    <h2 style="margin: 0; color: gold;">Registration</h2>
+    <a href="/dashboard" class="btn">Home</a>
+</nav>
+
+<div class="container">
+    <div class="card" style="text-align: center;">
+        <h1>{{ message }}</h1>
+        <a href="{{ url_for('admin_dashboard') }}">
+            <button type="button">Return to Dashboard</button>
+        </a>
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 EventLux. All rights reserved.
+</footer>
+
+</body>
+</html>

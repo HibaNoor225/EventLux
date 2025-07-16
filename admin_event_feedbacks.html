@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedbacks for {{ event.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Playfair+Display&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <h2 style="margin: 0; color: gold; font-family: 'Cinzel', serif;">Event Feedbacks</h2>
+    <form action="/admin/events" method="get">
+        <button class="btn" type="submit">← Back to Events</button>
+    </form>
+</nav>
+
+<!-- Container -->
+<div class="container">
+    <div class="card">
+        <h2 style="font-family: 'Cinzel', serif;">Feedbacks for
+            <span style="color: #ffd700;">{{ event.title }}</span>
+        </h2>
+
+        <div class="table-container">
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>User Name</th>
+                        <th>Email</th>
+                        <th>Rating</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for fb in feedbacks %}
+                    <tr>
+                        <td>{{ fb.name }}</td>
+                        <td>{{ fb.email }}</td>
+                        <td>{{ fb.rating }}</td>
+                        <td>{{ fb.comments }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <!-- Overall Sentiment -->
+            <p style="font-family: 'Playfair Display', serif; margin-top: 2rem; font-size: 1.15rem;">
+                <span style="color: gold; font-weight: bold;">Overall Reviews:</span>
+                {% if sentiment in ["Positive", "Negative", "Neutral"] %}
+                    <strong style="color: white; font-size: 1.2rem;">{{ sentiment }}</strong>
+                {% else %}
+                    <strong style="color: white; font-size: 1.2rem;">{{ sentiment }}</strong>
+                {% endif %}
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    &copy; 2025 <span style="color: gold;">EventLux</span>. All rights reserved.
+</footer>
+
+</body>
+</html>

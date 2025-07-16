@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit Feedback</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Playfair+Display&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar">
+    <h2 style="margin: 0; color: gold;">Feedback: {{ event.title }}</h2>
+    <a href="/dashboard" class="btn">Home</a>
+</nav>
+
+<div class="container">
+    <div class="card">
+        <form method="POST">
+            <label for="rating">Rating (1 to 5):</label>
+            <input type="number" name="rating" id="rating" min="1" max="5" required>
+
+            <label for="comments">Comments:</label>
+            <textarea name="comments" id="comments" rows="5" placeholder="Write your feedback here..." required></textarea>
+            <div class="button-center">
+            <button type="submit" class="btn">Submit Feedback</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 EventLux. All rights reserved.
+</footer>
+
+</body>
+</html>

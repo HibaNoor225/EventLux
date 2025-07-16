@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Events</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<nav class="navbar">
+    <h2 style="margin: 0; color: gold;">My Events</h2>
+    <form action="/dashboard" method="get">
+        <button type="submit" class="btn">Home</button>
+    </form>
+</nav>
+
+<div class="wide-container">
+    <!-- 🔍 Search bar -->
+    <form method="get" action="{{ url_for('my_events') }}" style="margin-bottom: 20px; text-align: center;">
+        <input type="text" name="category" placeholder="Search by category..." value="{{ search }}">
+        <button type="submit" class="btn">Search</button>
+    </form>
+
+    {% if grouped_events %}
+        {% for category, events in grouped_events.items() %}
+            <div class="table-card">
+                <h3 style="color: darkblue;">{{ category }}</h3>
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Location</th>
+                            <th>Deadline</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for event in events %}
+                        <tr>
+                            <td>{{ event.title }}</td>
+                            <td>{{ event.description }}</td>
+                            <td>{{ event.date }}</td>
+                            <td>{{ event.time }}</td>
+                            <td>{{ event.location }}</td>
+                            <td>{{ event.registration_deadline }}</td>
+                            <td>
+                                <form method="get" action="{{ url_for('my_event_details', event_id=event.id) }}">
+                                    <button type="submit" class="btn small-btn">View More</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p style="text-align:center; color: red;">No events found in this category.</p>
+    {% endif %}
+</div>
+
+<footer>
+    &copy; 2025 EventLux. All rights reserved.
+</footer>
+
+</body>
+</html>

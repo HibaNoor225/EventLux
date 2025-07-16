@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Events</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Cinzel:wght@400;700&family=Lato&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <h2 style="margin: 0; font-family: 'Cinzel', serif; color: gold;">All Events</h2>
+    <form action="/dashboard" method="get">
+        <button type="submit" class="btn">Home</button>
+    </form>
+</nav>
+
+<!-- Page Container -->
+<div class="wide-container">
+    <!-- 🔍 Search bar -->
+    <form method="get" action="{{ url_for('all_events') }}" style="margin-bottom: 2rem; text-align: center;">
+        <input type="text" name="category" placeholder="Search by category..." value="{{ search }}">
+        <button type="submit" class="btn">Search</button>
+    </form>
+
+    {% if grouped_events %}
+        {% for category, events in grouped_events.items() %}
+            <div class="table-card">
+                <h3 style="font-family: 'Cinzel', serif; color: gold;">{{ category }}</h3>
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Location</th>
+                            <th>Spots Left</th>
+                            <th>Deadline</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for event in events %}
+                        <tr>
+                            <td>{{ event.title }}</td>
+                            <td>{{ event.description }}</td>
+                            <td>{{ event.date }}</td>
+                            <td>{{ event.time }}</td>
+                            <td>{{ event.location }}</td>
+                            <td>{{ event.spots }}</td>
+                            <td>{{ event.registration_deadline }}</td>
+                            <td>
+                                <form method="get" action="{{ url_for('event_details', event_id=event.id) }}">
+                                    <button type="submit" class="btn btn-primary">View More</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="card" style="text-align: center; margin-top: 2rem;">
+            <p style="color: #ff6666; font-weight: bold;">No events found in this category.</p>
+        </div>
+    {% endif %}
+</div>
+
+<!-- Footer -->
+<footer>
+    &copy; 2025 <span style="color: gold;">EventLux</span>. All rights reserved.
+</footer>
+
+</body>
+</html>

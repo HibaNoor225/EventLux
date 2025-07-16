@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ event.title }} - Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .event-details-container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+            background: rgba(3, 122, 136, 0.87);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .event-title {
+            text-align: center;
+            color: darkblue;
+        }
+        .styled-table th {
+            text-align: left;
+            color: black;
+        }
+        .styled-table td {
+            color: black;
+        }
+        .event-images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .event-images img {
+            max-width: 200px;
+            border-radius: 8px;
+            border: 3px solid #000000;
+        }
+        .center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <h2 style="margin: 0; color: gold;">Event Details</h2>
+    <form action="{{ url_for('all_events') }}" method="get">
+        <button type="submit" class="btn">Back to All Events</button>
+    </form>
+</nav>
+
+<div class="event-details-container">
+    <h2 class="event-title">{{ event.title }}</h2>
+
+    <table class="styled-table">
+        <tbody>
+            <tr><th>Description</th><td>{{ event.description }}</td></tr>
+            <tr><th>Category</th><td>{{ event.category }}</td></tr>
+            <tr><th>Date</th><td>{{ event.date.strftime('%Y-%m-%d') }}</td></tr>
+            <tr><th>Time</th><td>{{ event.time }}</td></tr>
+            <tr><th>Location</th><td>{{ event.location }}</td></tr>
+            <tr><th>Spots Left</th><td>{{ event.spots }}</td></tr>
+            <tr><th>Registration Deadline</th><td>{{ event.registration_deadline.strftime('%Y-%m-%d') }}</td></tr>
+        </tbody>
+    </table>
+
+    {% if event.images %}
+        <h3 style="margin-top: 30px; color: darkblue;">Event Images:</h3>
+        <div class="event-images">
+            {% for image in event.images %}
+                <img src="{{ url_for('static', filename='uploads/' ~ image) }}" alt="Event Image">
+            {% endfor %}
+        </div>
+    {% endif %}

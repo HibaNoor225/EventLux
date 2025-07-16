@@ -1,0 +1,279 @@
+/* Font & Base Layout */
+body {
+    font-family: 'Playfair Display', serif;
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    color: #fdfdfd;
+    margin: 0;
+    padding: 0;
+}
+
+/* Use Cinzel for major headings */
+h1, h2, h3 {
+    font-family: 'Cinzel', serif;
+    color: gold;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-weight: 1000; /* Bold */
+}
+h2 {
+    font-weight: 450;
+}
+body {
+    font-weight: 400; /* Regular */
+}
+
+
+/* Form & Input Container */
+.container {
+    width: 50%;
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+}
+
+.wide-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 2rem auto;
+    padding: 2rem 3rem;
+    box-sizing: border-box;
+}
+
+
+.card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+a {
+    color: #ffd700;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Navbar */
+.navbar {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar a {
+    color: #fff;
+    margin-left: 1.5rem;
+}
+
+/* Footer */
+footer {
+    background-color: #111;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 3rem;
+    color: #888;
+}
+
+/* Forms */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+label {
+    display: block;
+    margin: 0 auto;
+    width: 70%;
+    font-weight: bold;
+    color: #eae3be;
+    text-align: left;
+}
+
+input, select, textarea {
+    padding: 0.75rem;
+    width: 70%;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: 'Lato', sans-serif;
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #f3d5d5;
+    outline: none;
+    display: block;
+    margin: 0 auto;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Buttons */
+button, .btn {
+    background-color: gold;
+    color: black;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+    display: inline-block;
+    white-space: nowrap;
+    text-align: center;
+}
+
+button:hover, .btn:hover {
+    background-color: #ffd700;
+    color: black;
+}
+
+/* Button Variants */
+.btn-primary {
+    background-color: #3498db;
+    color: white;
+}
+
+.btn-success {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #f1df96;
+    color: white;
+}
+
+.btn-primary:hover,
+.btn-success:hover,
+.btn-danger:hover,
+.btn-secondary:hover {
+    opacity: 0.9;
+}
+
+/* Table Section Container */
+.table-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+}
+
+.table-card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    overflow-x: hidden;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+/* Table Styling */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+.styled-table th, .styled-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.styled-table th {
+    background-color: rgba(255, 215, 0, 0.2);
+    color: gold;
+    font-weight: bold;
+}
+
+.styled-table tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Additional Utility */
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ul li {
+    margin-bottom: 1rem;
+}
+
+ul li form {
+    display: inline;
+}
+
+ul li form,
+.inline-form {
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.blended-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.blended-logo img {
+    width: 280px;
+    opacity: 0.8; /* Slight transparency */
+    filter: brightness(1.1) drop-shadow(0 0 15px rgba(255, 215, 0, 0.4)); /* Goldish glow */
+    border-radius: 12px;
+    transition: all 0.3s ease-in-out;
+}
+select {
+    padding: 0.75rem;
+    width: 70%;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: 'Lato', sans-serif;
+    background-color: rgba(0, 0, 0, 0.1); /* Same as input */
+    color: #f3d5d5;
+    outline: none;
+    display: block;
+    margin: 0 auto;
+    appearance: none; /* Removes default arrow in some browsers */
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20fill%3D'gold'%20viewBox%3D'0%200%2024%2024'%20xmlns%3D'http://www.w3.org/2000/svg'%3E%3Cpath%20d%3D'M7%2010l5%205%205-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.8rem center;
+    background-size: 1rem;
+    cursor: pointer;
+}
+select:focus {
+    border: 1px solid gold;
+    background-color: rgba(255, 255, 255, 0.05);
+}

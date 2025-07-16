@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Playfair+Display&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<nav class="navbar">
+    <h2 style="margin: 0; color: gold;">User Login</h2>
+    <a href="/" class="btn">Home</a>
+</nav>
+
+<div class="container">
+    <div class="card">
+    <h1>Login Now!</h1>
+        <form action="/loginUser" method="POST">
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required>
+            <div style="text-align: center;">
+            <button type="submit" class="btn">Login</button>
+            </div>
+        </form>
+
+        {% if error %}
+            <p style="color:red; margin-top: 1rem;">{{ error }}</p>
+        {% endif %}
+        {% if msg %}
+            <p style="color:lightgreen; margin-top: 1rem;">{{ msg }}</p>
+        {% endif %}
+
+        <p style="margin-top: 1rem;">
+            <a href="/forgot_password">Forgot Password?</a>
+        </p>
+        <p>
+            Don't have an account? <a href="/register">Register here</a>
+        </p>
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 EventLux. All rights reserved.
+</footer>
+
+</body>
+</html>
