@@ -16,7 +16,7 @@ from collections import defaultdict
 app = Flask(__name__)
 start_scheduler()
 send_event_reminders()
-app.secret_key="csf22@webfinal!"
+app.secret_key="Your_secret_key"
 app.config.from_object('config')
 app.config['UPLOAD_FOLDER'] = os.path.join('static', 'uploads')
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
